@@ -58,7 +58,7 @@ class Post(models.Model):
         verbose_name_plural = 'Посты'
 
 def create_slug(instance, new_slug=None):
-    slug = slugify(instance.title)
+    slug = slugify(instance.slug)
     if new_slug is not None:
         slug  = new_slug
     qs = Post.objects.filter(slug=slug).order_by("-id")
