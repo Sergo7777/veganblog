@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '43$41ans9vhyk4%7(5ucoxa_95f%3h#llvs-(4^!(c$+0)mmxn'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['veganbl.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['blogveg.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
