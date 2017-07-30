@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '43$41ans9vhyk4%7(5ucoxa_95f%3h#llvs-(4^!(c$+0)mmxn'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['blogveg.herokuapp.com']
+ALLOWED_HOSTS = ['blogveg.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -131,6 +131,7 @@ STATICFILES_DIRS = [
 ]
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 STATIC_ROOT = os.path.join(BASE_DIR, "static_cdn")
-MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media_cdn")
+
+MEDIA_URL = '/media/'
 
