@@ -1,0 +1,31 @@
+<div class="overflow-container">
+<div class="max-width">
+    <header id="site-header" class="site-header" role="banner">
+        <div id="menu-container" class="menu-container">
+            <div class="menu" role="navigation" id="menu">
+                <nav class="menu-nav">
+                    <ul>
+                        <li><a title="Веганство" href="#">Веганство</a></li>
+                        <li><a title="Статьи" href="{% url 'posts:list' %}">Статьи</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="search">
+                <form method="GET" action="" class="search-form">
+                    <input class="search-field" type="text" placeholder="Search..." title="Поиск" name="q" value="{{ request.GET.q }}">
+                </form>
+            </div>
+        </div>
+        {% if admin_list %}
+        <div id="title-container" class="title-container">
+            <div class="site-title">
+                {% for item in admin_list %}
+                <h2><img src="{{ item.foto.url }}" class="img-circle"  width="140" height="140"> Блог о     Веган</h2>
+                <!-- {% if item.user.get_full_name %}<h4 class="name-left">{{item.user.get_full_name}}</h4>{% endif %}
+                {% endfor %} -->
+            </div>
+        </div>
+        {% endif %}
+    </header>
+</div>
+</div>

@@ -109,10 +109,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
+LANGUAGE_CODE = 'ru-Ru'
 
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Kiev'
 
 USE_I18N = True
 
@@ -133,5 +132,5 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 STATIC_ROOT = os.path.join(BASE_DIR, "static_cdn")
 MEDIA_ROOT = os.path.join(BASE_DIR, "media_cdn")
 
-MEDIA_URL = '/media/'
+MEDIA_URL = '/media_cdn/'
 

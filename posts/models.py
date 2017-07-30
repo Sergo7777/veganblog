@@ -15,10 +15,19 @@ def upload_location(instance, filename):
     #return "%s/%s.%s" %(instance.id, instance.id, extension)
     return "%s/%s" %(instance.id, filename)
 
+class UserImage(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1)
+    foto = models.ImageField(upload_to=upload_location,
+            null=True, blank=True,
+            width_field="width_field",
+            height_field="height_field")
+    width_field = models.IntegerField(default=0)
+    height_field = models.IntegerField(default=0)
+
 class Post(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1)
-    title = models.CharField(max_length=120)
-    slug = models.SlugField(unique=True)
+    title = models.CharField(max_length=150)
+    slug = models.SlugField(unique=True, allow_unicode=True)
     image = models.ImageField(upload_to=upload_location,
             null=True, blank=True,
             width_field="width_field",
@@ -45,6 +54,8 @@ class Post(models.Model):
     
     class Meta:
         ordering = ["-timestamp", "-updated"]
+        verbose_name = 'Пост'
+        verbose_name_plural = 'Посты'
 
 def create_slug(instance, new_slug=None):
     slug = slugify(instance.title)
