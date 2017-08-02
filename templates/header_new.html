@@ -1,0 +1,36 @@
+{% load staticfiles %}  
+    <!--HEADER -->
+    <div class="header">
+      <div class="for-sticky">
+        <!--LOGO-->
+        <div class="col-md-2 col-xs-6 logo">
+          <a href="index.html"><img alt="logo" class="logo-nav" src="{% static 'images/logo.png' %}"></a>
+        </div>
+        <!--/.LOGO END-->
+      </div>
+      <div class="menu-wrap">
+        <nav class="menu">
+          <div class="menu-list">
+            <a data-scroll="" href="#home" class="active">
+              <span>Главная</span>
+            </a>
+            <a data-scroll="" href="#about">
+              <span>О нас</span>
+            </a>
+            <a data-scroll="" href="#blog">
+              <span>Статьи</span>
+            </a>
+            <a data-scroll="" href="#contact">
+              <span>Контакты</span>
+            </a>
+          </div>
+        </nav>
+        <button class="close-button" id="close-button">Закрыть меню</button>
+      </div>
+      <button class="menu-button" id="open-button">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button><!--/.for-sticky-->
+    </div>
+    <!--/.HEADER END сделано-->
