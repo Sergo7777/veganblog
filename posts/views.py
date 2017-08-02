@@ -110,7 +110,7 @@ def post_list(request):
         "today": today, 
         "admin_list": admin_list,
     }
-    return render(request, 'post_list.html', context)
+    return render(request, 'post_list_new.html', context)
 
 def post_detail(request, slug=None):
     instance = get_object_or_404(Post, slug=slug)
