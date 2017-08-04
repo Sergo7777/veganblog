@@ -103,6 +103,19 @@ img { max-width: 100%; }
     text-transform: uppercase;
     color: green;
 }
+.map-content {
+    background: rgba(255, 255, 255, 0.8) none repeat scroll 0 0;
+
+    outline: 4px double green;
+    outline-offset: 8px;
+    text-align: center;
+}
+.wrap-map-content {
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin-bottom: 10%;
 }
 /*----------------------------------------- 2) Preloader --------------------------------------------------*/
 #preloader {

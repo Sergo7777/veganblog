@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 {% block content%}
 <!--CONTENT WRAP-->
 <div class="content-wrap">
@@ -49,9 +50,34 @@
                         </ul>
                 </ul>
             </div>
+            <div class="col-md-3 col-md-offset-1">
+              <div class="wrap-map-content">
+                  <div class="map-content">
+                    <h5>Помогите проекту развиться! Поделитесь в соц. сетях, ведь это бесплатно! А вам +1 в карму:)</h5>
+                    <a href="https://www.facebook.com/sergey.denisenko.7"><img src="{% static 'images/fb.png' %}" width="28" height="28"></a> 
+                    <a href="https://twitter.com/"><img src="{% static 'images/tw.png' %}" width="30" height="30"></a>
+                    <a href="https://vk.com/public150133709"><img src="{% static 'images/vk.png' %}" width="30" height="30"></a>
+                  </div>
+                </div>
+                <div class="w-content">
+                      {% if admin_list %}
+                        {% for item in admin_list %}
+                      <img src="{{ item.foto.url }}" class="img-thumbnail"  width="140" height="140">
+                        {% if item.user.get_full_name %}
+                      <h3 class="name">{{item.user.get_full_name}}</h3>
+                        {% endif %}
+                      </h3>
+                      <p class="head-about">
+                        {{item.about}}
+                      </p>
+                        {% endfor %} 
+                      {% endif %}
+                    </div>
+            </div>
         </div>   
     </div>
 </section>
+{% include "footer.html" %}
     </div>
 </div>
 {% endblock content %}

@@ -11,10 +11,10 @@
       <div class="menu-wrap">
         <nav class="menu">
           <div class="menu-list">
-            <a {% if request.path == '/' %} class="active"{% endif %} href="{% url 'posts:list' %}#home">
+            <a {% if request.path == '/' %} class="active"{% endif %}  href="{% url 'posts:list' %}#home">
               <span>Главная</span>
             </a>
-            <a {% if request.path == "/#about/ "%} class="active" {% endif %} href="{% url 'posts:list' %}#about">
+            <a {% if request.path == "/?#about" %} class="active" {% endif %}  href="{% url 'posts:list' %}#about">
               <span>Об авторе</span>
             </a>
             <a {% if request.path == "/category/3/" %} class="active" {% endif %} href="{% url 'posts:category' id=3 %}">

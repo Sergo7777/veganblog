@@ -143,6 +143,7 @@ def post_delete(request, slug=None):
     return redirect("post:list")
 
 def post_map(request):
+    admin_list = UserImage.objects.all()
     category1 = CategoryPost.objects.get(id=1)
     queryset_list_1 = Post.objects.filter(category=category1)
     category2 = CategoryPost.objects.get(id=2)
@@ -153,6 +154,7 @@ def post_map(request):
         "queryset_list_1": queryset_list_1,
         "queryset_list_2": queryset_list_2,
         "queryset_list_3": queryset_list_3,
+        "admin_list": admin_list,
     }
     return render(request, 'karta.html', context)
 
