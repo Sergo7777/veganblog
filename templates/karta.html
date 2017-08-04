@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content%}
+<!--CONTENT WRAP-->
+<div class="content-wrap">
+      <!--CONTENT-->
+    <div class="content">
+        <!--HOME-->
+<section class="grey-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-1">
+                <h1>Карта сайта:</h1>
+                <ul>
+                    <h3>Страницы:</h3>
+                        <ul>
+                           <li class="title-map"><a href="{% url 'posts:list' %}">Главная</a></li>
+                           <li class="title-map"><a href="{% url 'posts:list' %}#about">Об авторе</a></li>
+                           <li class="title-map"><a href="{% url 'posts:list' %}#contact">Контакты</a></li>
+                        </ul>
+                    <h3>Публикации:</h3>
+                        <ul>
+                           <li><a href="{% url 'posts:category' id=1 %}"><span class="public">Рецепты</span></a>
+                               {% for item in queryset_list_1%}
+                               <ul>
+                                   {% if item.title %} 
+                                   <li class="title-map"><a href="{{item.get_absolute_url}}">{{item.title}}</a></li>
+                                   {% endif %}
+                               </ul>
+                               {% endfor %}
+                           </li>
+                           <li><a href="{% url 'posts:category' id=2 %}"><span class="public">Полезные советы</span></a>
+                               {% for item in queryset_list_2%}
+                               <ul>
+                                   {% if item.title %} 
+                                   <li class="title-map"><a href="{{item.get_absolute_url}}">{{item.title}}</a></li>
+                                   {% endif %}
+                               </ul>
+                               {% endfor %}
+                           </li>
+                           <li><a href="{% url 'posts:category' id=3 %}"><span class="public">Веганство и сыроедение</span></a>
+                               {% for item in queryset_list_3%}
+                               <ul>
+                                   {% if item.title %} 
+                                   <li class="title-map"><a href="{{item.get_absolute_url}}">{{item.title}}</a></li>
+                                   {% endif %}
+                               </ul>
+                               {% endfor %}
+                            </li>
+                        </ul>
+                </ul>
+            </div>
+        </div>   
+    </div>
+</section>
+    </div>
+</div>
+{% endblock content %}

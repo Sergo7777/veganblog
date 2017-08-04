@@ -57,20 +57,17 @@
                   <div class="row">
                     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12">
                         <h3>Мои контакты: </h3>
-                      <div class="wrap-about">
                         <table class="w-content">
                           <tr>
-                            <td class="title">Тел. </td>
-                            <td class="break">:</td>
-                            <td> +38 (068) 235-13-73 </td>
+                            <td class="title-map">Тел.:  </td>
+                            <td class="break"> +38 (068) 235-13-73 </td>
+
                           </tr>
                           <tr>
-                            <td class="title">Email </td>
-                            <td class="break">:</td>
-                            <td> denisenko.s.kr@gmail.com</td>
+                            <td class="title-map">Email: </td>
+                            <td class="break"> denisenko.s.kr@gmail.com </td>
                           </tr>
                         </table>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -167,16 +164,29 @@
         <section id="contact" class="white-bg">
           <div class="container">
             <div class="row">
-              <div class="col-md-3">
+              <div class="col-md-4">
                 <h3 class="title-small">
                   <span>Контакты</span>
                 </h3>
-                <p class="content-detail">
-                  Здесь вы можете оставить нам сообщение...
+                <br>
+                <p class="title-map">
+                  Здесь вы можете оставить мне сообщение...
                 </p>
+                  <br>
+                        <table class="w-content">
+                          <tr>
+                            <td class="title-map">Тел.:  </td>
+                            <td class="break"> +38 (068) 235-13-73 </td>
+
+                          </tr>
+                          <tr>
+                            <td class="title-map">Email: </td>
+                            <td class="break"> denisenko.s.kr@gmail.com </td>
+                          </tr>
+                        </table>
 
               </div>
-              <div class="col-md-9 content-right">
+              <div class="col-md-4 col-md-offset-2 content-right">
                 <form method="post" action="">{% csrf_token%}
                   <div class="group">
                     <input required="" name="name" type="text"><span class="highlight"></span><span class="bar"></span><label>Имя</label>

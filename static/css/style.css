@@ -88,6 +88,22 @@ img { max-width: 100%; }
 .current{
   font-weight: 600;
 }
+.title-map{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 26px;
+    padding: 0 10px;
+}
+.public{
+    font-family: "Roboto Slab",serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 26px;
+    padding: 0 10px;
+    text-transform: uppercase;
+    color: green;
+}
+}
 /*----------------------------------------- 2) Preloader --------------------------------------------------*/
 #preloader {
   position: fixed;
@@ -104,7 +120,7 @@ img { max-width: 100%; }
   position: absolute;
   left: 50%;
   top: 50%;
-  background-image: url(../images/loader.gif);
+  background-image: url(../images/200w.gif);
   background-repeat: no-repeat;
   background-position: center center;
   text-align: center;
@@ -469,8 +485,8 @@ p {
   letter-spacing: 0.6px;
 }
 #home .typed {
-  font-weight: 400;
-  font-size: 16px;
+  font-weight: 600;
+  font-size: 18px;
   line-height: 26px;
   letter-spacing: 1.5px;
   margin: 0 auto;

@@ -11,26 +11,29 @@
       <div class="menu-wrap">
         <nav class="menu">
           <div class="menu-list">
-            <a href="{% url 'posts:list' %}#home" class="active">
+            <a {% if request.path == '/' %} class="active"{% endif %} href="{% url 'posts:list' %}#home">
               <span>Главная</span>
             </a>
-            <a  href="{% url 'posts:list' %}#about">
+            <a {% if request.path == "/#about/ "%} class="active" {% endif %} href="{% url 'posts:list' %}#about">
               <span>Об авторе</span>
             </a>
-            <a href="{% url 'posts:category' id=3 %}">
+            <a {% if request.path == "/category/3/" %} class="active" {% endif %} href="{% url 'posts:category' id=3 %}">
               <span>Веганство и сыроедение</span>
             </a><br>
-            <a href="{% url 'posts:category' id=1 %}">
+            <a {% if request.path == "/category/1/"%} class="active" {% endif %} href="{% url 'posts:category' id=1 %}">
               <span>Рецепты</span>
             </a>
-            <a  href="{% url 'posts:category' id=2 %}">
+            <a {% if request.path == "/category/2/"%} class="active" {% endif %}  href="{% url 'posts:category' id=2 %}">
               <span>Полезные советы</span>
             </a>
-            <a href="{% url 'posts:list' %}#blog">
+            <a {% if request.path == "/blog" %} class="active" {% endif %} href="{% url 'posts:list' %}#blog">
               <span>Все статьи</span>
             </a>
-            <a  href="{% url 'posts:list' %}#contact">
+            <a {% if request.path == "#contact"%} class="active" {% endif %}  href="{% url 'posts:list' %}#contact">
               <span>Контакты</span>
+            </a>
+            <a {% if request.path == "/map/"%} class="active" {% endif %}  href="{% url 'posts:map' %}">
+              <span>Карта сайта</span>
             </a>
           </div>
         </nav>
