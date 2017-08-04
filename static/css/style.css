@@ -81,6 +81,13 @@ img { max-width: 100%; }
 .green{
   color: green;
 }
+.next{
+  color: green; 
+  font-weight: 600;
+}
+.current{
+  font-weight: 600;
+}
 /*----------------------------------------- 2) Preloader --------------------------------------------------*/
 #preloader {
   position: fixed;
