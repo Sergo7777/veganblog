@@ -37,12 +37,18 @@
                 <div class="col-md-12">
                   <div class="wrap-about">
                     <div class="w-content">
-                      <h3 class="name">
-                        Всемирная Декларация Прав Животных
+                      {% if admin_list %}
+                        {% for item in admin_list %}
+                      <img src="{{ item.foto.url }}" class="img-thumbnail"  width="140" height="140">
+                        {% if item.user.get_full_name %}
+                      <h3 class="name">{{item.user.get_full_name}}</h3>
+                        {% endif %}
                       </h3>
                       <p class="head-about">
-                        Всемирная Декларация Прав Животных была торжественно объявлена в Париже 15 октября 1978 в штабе ЮНЕСКО. Текст, пересмотренный Международной Лигой Прав Животных в 1989, был представлен Генеральному директору ЮНЕСКО в 1990 и обнародован в тот же самый год.
+                        {{item.about}}
                       </p>
+                        {% endfor %} 
+                      {% endif %}
                     </div>
                   </div>
                 </div>
@@ -50,13 +56,9 @@
                 <div class="col-md-12 col-sm-12 col-xs-12 white-col">
                   <div class="row">
                     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12">
+                        <h3>Мои контакты: </h3>
                       <div class="wrap-about">
                         <table class="w-content">
-                          <tr>
-                            <td class="title">Кафе-бар </td>
-                            <td class="break">:</td>
-                            <td> Vegan </td>
-                          </tr>
                           <tr>
                             <td class="title">Тел. </td>
                             <td class="break">:</td>
@@ -66,11 +68,6 @@
                             <td class="title">Email </td>
                             <td class="break">:</td>
                             <td> denisenko.s.kr@gmail.com</td>
-                          </tr>
-                          <tr>
-                            <td class="title">Мы находимся </td>
-                            <td class="break">:</td>
-                            <td> г. Кривой Рог, пр. Металлургов 31</td>
                           </tr>
                         </table>
                       </div>
@@ -85,50 +82,61 @@
         <!--/.ABOUT END-->
 
           <!--BLOG-->
+
         <section class="grey-bg" id="blog">
           <div class="container">
             <div class="row">
               <div class="col-md-12">
                 <h3 class="title-small-center text-center">
-                  <span>Статьи</span>
+                  <span>Последние статьи</span>
                 </h3>
                 <div class="row">
-                  <div class="col-md-6 col-md-offset-3">
-                    <p class="content-details text-center">
-                      Текст к блогу , хороший текст подобрать! 
-                    </p>
-                  </div>
-                <div class="search col-md-3 col-md-offset-9">
-                  <form method="GET" action="" class="search-form">
-                    <input class="search-field" type="text" placeholder="Найти статью..." title="Поиск" name="q" value="{{ request.GET.q }}">
-                  </form>
+<form method="GET" action="">
+<div class="col-md-4 search">
+    <div class="input-group">
+<input class="form-control" type="text" placeholder="Найти статью..." title="Поиск" name="q" value="{{ request.GET.q }}">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+      </span>
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+</form>
+
                 </div>
-                </div>
-                <!--GRID BLOG-->
-                <div class="grid">
+              <div class="col-md-12 content-right">
+                <div class="row">
+                  <ul class="listing-item">
                   {% for obj in object_list %}
-                  <div class="grid-item">
-                    <div class="wrap-article">
-                      {% if obj.image %} 
-                      <img alt="blog-1" class="img-circle text-center" src="{{obj.image.url}}">
-                      {% endif %}
+                    <li>
+                      <div class="col-md-4 col-sm-6">
+                        <div class="wrap-card">
+                          <div class="card">
+                            {% if obj.image %} 
+                            <img alt="blog-1" class="img-circle" width="133" height="133" src="{{obj.image.url}}">
+                            {% endif %}
                       <p class="subtitle fancy">
                         <span>{{obj.publish}}</span>
                       </p>
+
                       <a href="{{obj.get_absolute_url}}">
-                        <h3 class="title">
+                        <h2 class="title">
                           {{obj.title}}
-                        </h3>
+                        </h2>
                       </a>
-                      <p class="content-blog">
-                        {{obj.content|linebreaks|truncatechars:120}}
-                      </p>
-                      {% if obj.user.get_full_name %}<p>Автор: {{obj.user.get_full_name}}</p>{% endif %}
-                    </div>
-                  </div>
-                 {% endfor %}             
+                            <div class="text-detail">
+                              <p>
+                                {{obj.content|linebreaks|truncatechars:120}}<a href="{{obj.get_absolute_url}}" class="green">Читать далее &rarr;</a>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                 {% endfor %}
+                  </ul>
                 </div>
-                <!--/.GRID BLOG END-->
+              </div>
+
               </div>
             </div>
           </div>
@@ -169,17 +177,17 @@
 
               </div>
               <div class="col-md-9 content-right">
-                <form>
+                <form method="post" action="">{% csrf_token%}
                   <div class="group">
-                    <input required="" type="text"><span class="highlight"></span><span class="bar"></span><label>Имя</label>
+                    <input required="" name="name" type="text"><span class="highlight"></span><span class="bar"></span><label>Имя</label>
                   </div>
                   <div class="group">
-                    <input required="" type="email"><span class="highlight"></span><span class="bar"></span><label>Email</label>
+                    <input required="" name="email" type="email"><span class="highlight"></span><span class="bar"></span><label>Email</label>
                   </div>
                   <div class="group">
-                    <textarea required=""></textarea><span class="highlight"></span><span class="bar"></span><label>Сообщение</label>
+                    <textarea required="" name="message" value=""></textarea><span class="highlight"></span><span class="bar"></span><label>Сообщение</label>
                   </div>
-                  <input id="sendMessage" name="sendMessage" type="submit" value="Отправить сообщение">
+                  <input id="sendMessage"  type="submit" value="Отправить сообщение">
                 </form>
               </div>
             </div>

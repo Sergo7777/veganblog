@@ -1,5 +1,5 @@
 from urllib.parse import quote_plus
-
+from django.core.urlresolvers import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect, Http404
@@ -8,13 +8,12 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 
 from .forms import PostForm
-from .models import Post, UserImage
+from .models import Post, UserImage, CategoryPost, Message
 # Create your views here.
 
-def template(request):
-    today = timezone.now().date()
-    admin_list = UserImage.objects.all()
-    queryset_list = Post.objects.active() #order_by('-timestamp')
+def category(request, id):
+    category = CategoryPost.objects.get(id=id)
+    queryset_list = Post.objects.filter(category=category)
     if request.user.is_staff or request.user.is_superuser:
         queryset_list = Post.objects.all()
 
@@ -38,12 +37,10 @@ def template(request):
         queryset = paginator.page(paginator.num_pages)
     context = {
         "object_list": queryset,
-        "title": "Статьи",
         "page_request_var": page_request_var,
-        "today": today, 
-        "admin_list": admin_list,
+        "category": category,
     }
-    return render(request, 'post_list_new.html', context)
+    return render(request, 'category.html', context)
 
 def post_create(request):
     if not request.user.is_staff or not request.user.is_superuser:
@@ -82,6 +79,15 @@ def post_list(request):
     today = timezone.now().date()
     admin_list = UserImage.objects.all()
     queryset_list = Post.objects.active() #order_by('-timestamp')
+    if request.method == "POST":   
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+        message = Message.objects.create(name=name, email=email, content=message)
+        message.save()
+        return HttpResponseRedirect(
+                        u'%s?status_message=Сообщение отправлено!' %
+                        reverse('posts:list'))
     if request.user.is_staff or request.user.is_superuser:
         queryset_list = Post.objects.all()
 
@@ -105,16 +111,18 @@ def post_list(request):
         queryset = paginator.page(paginator.num_pages)
     context = {
         "object_list": queryset,
-        "title": "Статьи",
         "page_request_var": page_request_var,
         "today": today, 
         "admin_list": admin_list,
     }
     return render(request, 'post_list_new.html', context)
 
+
+
+
+
 def post_detail(request, slug=None):
     instance = get_object_or_404(Post, slug=slug)
-    admin_list = UserImage.objects.all()
     if instance.publish > timezone.now().date() or instance.draft:
         if not request.user.is_staff or not request.user.is_superuser:
             raise Http404
@@ -123,7 +131,6 @@ def post_detail(request, slug=None):
         "title": instance.title,
         "instance": instance,
         "share_string": share_string,
-        "admin_list": admin_list,
     }
     return render(request, 'post_detail.html', context)
 
@@ -134,3 +141,11 @@ def post_delete(request, slug=None):
     instance.delete()
     messages.success(request, 'Successfuly deleted')
     return redirect("post:list")
+
+def message(request):
+    if request.method == "POST":   
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+        message = Message.objects.create(name=name, email=email, content=message)
+        message.save()

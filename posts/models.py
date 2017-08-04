@@ -23,10 +23,40 @@ class UserImage(models.Model):
             height_field="height_field")
     width_field = models.IntegerField(default=0)
     height_field = models.IntegerField(default=0)
+    about = models.TextField()
+
+    class Meta:
+        verbose_name = 'Пользователь'
+        verbose_name_plural = 'Пользователи'
+
+class CategoryPost(models.Model):
+    name = models.CharField(max_length=255)
+
+    def __unicode__(self):
+        return self.name
+    
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Категория"
+        verbose_name_plural = "Категории"
+
+class Message(models.Model):
+    name = models.CharField(max_length=256)
+    email = models.EmailField(max_length=254)
+    content = models.TextField()
+    
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Сообщение"
+        verbose_name_plural = "Сообщения"
 
 class Post(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1)
-    title = models.CharField(max_length=150)
+    title = models.CharField(max_length=200)
     slug = models.SlugField(unique=True, allow_unicode=True)
     image = models.ImageField(upload_to=upload_location,
             null=True, blank=True,
@@ -39,7 +69,7 @@ class Post(models.Model):
     publish = models.DateField(auto_now=False, auto_now_add=False)
     updated = models.DateTimeField(auto_now=True, auto_now_add=False)
     timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
-
+    category = models.ForeignKey(CategoryPost)
     objects = PostManager()
  
     def __unicode__(self):
