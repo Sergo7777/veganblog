@@ -8,13 +8,13 @@
         </div>
         <!--/.LOGO END-->
       </div>
-      <div class="menu-wrap">
+      <div class="menu-wrap" id="menu">
         <nav class="menu">
           <div class="menu-list">
-            <a  href="{% url 'posts:list' %}#home">
+            <a  href="{% url 'posts:list' %}">
               <span>Главная</span>
             </a>
-            <a href="{% url 'posts:list' %}#about">
+            <a class="exit" href="{% url 'posts:list' %}#about">
               <span>Об авторе</span>
             </a>
             <a  href="{% url 'posts:category' id=3 %}">
@@ -26,10 +26,10 @@
             <a   href="{% url 'posts:category' id=2 %}">
               <span>Полезные советы</span>
             </a>
-            <a  href="{% url 'posts:list' %}#blog">
+            <a class="exit" href="{% url 'posts:list' %}#blog">
               <span>Все статьи</span>
             </a>
-            <a  href="{% url 'posts:list' %}#contact">
+            <a class="exit" href="{% url 'posts:list' %}#contact">
               <span>Контакты</span>
             </a>
 
