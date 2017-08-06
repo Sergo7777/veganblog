@@ -33,8 +33,6 @@
           <div class="col-md-8 col-sm-12 col-xs-12 white-col">
             <div class="row">
                 <div class="col-md-12">
-                  <div class="wrap-about">
-                    <div class="w-content">
                       {% if admin_list %}
                         {% for item in admin_list %}
                       <img src="{{ item.foto.url }}" class="img-thumbnail"  width="140" height="140">
@@ -47,8 +45,7 @@
                       </p>
                         {% endfor %} 
                       {% endif %}
-                    </div>
-                  </div>
+
                 </div>              
               </div>
           </div>
